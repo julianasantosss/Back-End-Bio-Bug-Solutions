@@ -1,4 +1,7 @@
 package com.biobug.demo.repository;
 
-public interface IProductRepository {
+import com.biobug.demo.model.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IProductRepository extends JpaRepository<Product, Long> {
 }

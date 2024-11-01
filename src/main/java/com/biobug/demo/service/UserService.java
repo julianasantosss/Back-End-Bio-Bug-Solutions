@@ -2,6 +2,7 @@ package com.biobug.demo.service;
 
 import com.biobug.demo.model.User;
 import com.biobug.demo.repository.IUserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,12 +40,36 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateUser(Long newIdUser, String newPasswordUser, String newEmailUser, String newNameUser, String newRolUser) {
-        User user = this.findUser(newIdUser);
-        user.setPasswordUser(newPasswordUser);
-        user.setEmailUser(newEmailUser);
-        user.setNameUser(newNameUser);
-        user.setRolUser(newRolUser);
+    public void updateUser(Long newIdUser, String newPasswordUser, String newEmailUser, String newNameUser) {
+        User user = userRepository.getReferenceById(newIdUser);
+//        user.setPasswordUser(newPasswordUser);
+//        user.setEmailUser(newEmailUser);
+//        user.setNameUser(newNameUser);
+
+        if (newPasswordUser != null){
+            user.setPasswordUser(newPasswordUser);
+        }
+
+        if (newEmailUser != null){
+            user.setPasswordUser(newPasswordUser);
+        }
+
+        if(newNameUser != null){
+            user.setNameUser(newNameUser);
+        }
+
+        userRepository.save(user);
+
     }
+    @Transactional
+    @Override
+    public void editUser(User user) {
+        User user1 = userRepository.getReferenceById(user.getIdUser());
+
+        if (user1 != null){
+            user1.editUser(user);
+        }
+    }
+
 
 }

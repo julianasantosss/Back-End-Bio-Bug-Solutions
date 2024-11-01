@@ -71,4 +71,15 @@ public class User {
     public void setPasswordUser(String passwordUser) {
         this.passwordUser = passwordUser;
     }
+
+    public void editUser(User user){
+        if (user.getNameUser()!= null){
+            this.nameUser = user.getNameUser();
+        }
+        if (user.getEmailUser()!= null){
+            this.emailUser = user.getEmailUser();
+        }
+    }
+
+
 }

@@ -10,5 +10,6 @@ public interface IUserService {
     public void saveUser(User user);
     public void deleteUser(Long idUser);
     public User findUser(Long idUser);
-    public void updateUser(Long newIdUser, String newPasswordUser, String newEmailUser, String newNameUser, String newRolUser);
+    public void updateUser(Long newIdUser, String newPasswordUser, String newEmailUser, String newNameUser);
+    public void editUser(User user);
 }
