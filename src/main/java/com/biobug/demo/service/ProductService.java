@@ -38,10 +38,10 @@ public class ProductService implements IProductService{
     public void editProduct(Long id, String newNameProduct, String newScientificName, String newDescription, Double newPrice, String newImage, LocalDate newDateCreate) {
         Product product = this.findProduct(id);
 
-        product.setNameProduct(newNameProduct);
-        product.setScientificName(newScientificName);
-        product.setDescription(newDescription);
-        product.setPrice(newPrice);
+//        product.setNameProduct(newNameProduct);
+//        product.setScientificName(newScientificName);
+//        product.setDescription(newDescription);
+//        product.setPrice(newPrice);
 
         this.saveProducts(product);
 
