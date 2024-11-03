@@ -46,20 +46,20 @@ public class UserService implements IUserService {
 //        user.setEmailUser(newEmailUser);
 //        user.setNameUser(newNameUser);
 
-        if (newPasswordUser != null){
-            user.setPasswordUser(newPasswordUser);
-        }
-
-        if (newEmailUser != null){
-            user.setPasswordUser(newPasswordUser);
-        }
-
-        if(newNameUser != null){
-            user.setNameUser(newNameUser);
-        }
-
-        userRepository.save(user);
-
+//        if (newPasswordUser != null){
+//            user.setPasswordUser(newPasswordUser);
+//        }
+//
+//        if (newEmailUser != null){
+//            user.setPasswordUser(newPasswordUser);
+//        }
+//
+//        if(newNameUser != null){
+//            user.setNameUser(newNameUser);
+//        }
+//
+//        userRepository.save(user);
+//
     }
     @Transactional
     @Override

@@ -1,14 +1,14 @@
 package com.biobug.demo.model;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 @Table(name = "products")
 @Entity
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 public class Product {
     @Id
@@ -25,81 +25,23 @@ public class Product {
     private String img;
     @Column(name = "date")
     private LocalDate dateCreation;
-    @ManyToOne
-    @JoinColumn(name = "id_order_detail")
-    private OrderDetail orderDetail;
 
 
 
 
-    //constructor vacio
-    public Product() {
+    public void updateProduct(Product product){
+        if(product.getNameProduct() != null){
+            this.nameProduct = product.getNameProduct();
+        }
+        if(product.getScientificName() != null){
+            this.scientificName = product.getScientificName();
+        }
+        if(product.getPrice() != null){
+            this.price = product.getPrice();
+        }
+        if(product.getDescription() != null){
+            this.description = product.getDescription();
+        }
     }
 
-    public Product(Long idProduct, String nameProduct, String scientificName, String description, Double price, String img, LocalDate dateCreation) {
-        this.idProduct = idProduct;
-        this.nameProduct = nameProduct;
-        this.scientificName = scientificName;
-        this.description = description;
-        this.price = price;
-        this.img = img;
-        this.dateCreation = dateCreation;
-    }
-
-    //GETTER Y SETTER
-//    public Long getIdProduct() {
-//        return idProduct;
-//    }
-//
-//    public void setIdProduct(Long idProduct) {
-//        this.idProduct = idProduct;
-//    }
-//
-//    public String getNameProduct() {
-//        return nameProduct;
-//    }
-//
-//    public void setNameProduct(String nameProduct) {
-//        this.nameProduct = nameProduct;
-//    }
-//
-//    public String getScientificName() {
-//        return scientificName;
-//    }
-//
-//    public void setScientificName(String scientificName) {
-//        this.scientificName = scientificName;
-//    }
-//
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-//
-//    public Double getPrice() {
-//        return price;
-//    }
-//
-//    public void setPrice(Double price) {
-//        this.price = price;
-//    }
-//
-//    public String getImg() {
-//        return img;
-//    }
-//
-//    public void setImg(String img) {
-//        this.img = img;
-//    }
-//
-//    public LocalDate getDateCreation() {
-//        return dateCreation;
-//    }
-//
-//    public void setDateCreation(LocalDate dateCreation) {
-//        this.dateCreation = dateCreation;
-//    }
 }

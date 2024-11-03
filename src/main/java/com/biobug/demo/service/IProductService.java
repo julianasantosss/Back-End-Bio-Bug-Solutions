@@ -28,4 +28,5 @@ public interface IProductService {
                             Double newPrice,
                             String newImage,
                             LocalDate newDateCreate);
+    public void editProduct(Product p);
 }

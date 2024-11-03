@@ -46,4 +46,12 @@ public class ProductService implements IProductService{
         this.saveProducts(product);
 
     }
+
+    @Override
+    public void editProduct(Product p) {
+        Product product = iProductRepository.getReferenceById(p.getIdProduct());
+        if(product != null){
+            product.updateProduct(p);
+        }
+    }
 }
