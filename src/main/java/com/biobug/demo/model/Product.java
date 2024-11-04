@@ -26,7 +26,20 @@ public class Product {
     @Column(name = "date")
     private LocalDate dateCreation;
 
+public Product(String nameProduct,
+    String scientificName,
+    String description,
+    Double price,
+    String img,
+    LocalDate dateCreation){
+    this.nameProduct = nameProduct;
+    this.scientificName = scientificName;
+    this.description = description;
+    this.price = price;
+    this.img = img;
+    this.dateCreation = dateCreation;
 
+}
 
 
     public void updateProduct(Product product){

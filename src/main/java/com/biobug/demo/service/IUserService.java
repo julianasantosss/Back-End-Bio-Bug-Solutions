@@ -12,4 +12,5 @@ public interface IUserService {
     public User findUser(Long idUser);
     public void updateUser(Long newIdUser, String newPasswordUser, String newEmailUser, String newNameUser);
     public void editUser(User user);
+    public User userVerifier(String email, String password);
 }

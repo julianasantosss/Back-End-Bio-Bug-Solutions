@@ -71,5 +71,12 @@ public class UserService implements IUserService {
         }
     }
 
+    @Override
+    public User userVerifier(String email, String password) {
+        return userRepository.findByEmailUserAndPasswordUser(email, password)
+                .orElseThrow(() -> new IllegalArgumentException("User is not registered"));
+
+    }
+
 
 }

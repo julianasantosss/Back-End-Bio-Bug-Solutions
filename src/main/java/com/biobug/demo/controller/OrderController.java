@@ -1,5 +1,7 @@
 package com.biobug.demo.controller;
 
+
+import com.biobug.demo.dto.OrderListDTO;
 import com.biobug.demo.model.Order;
 import com.biobug.demo.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,8 @@ public class OrderController {
         iOrderService.saveOrder(order);
     }
     @GetMapping
-    public List<Order> getAllOrders(){
-        return iOrderService.getOrders();
+    public List<OrderListDTO> getAllOrders(){
+        return iOrderService.getOrders().stream().map(OrderListDTO::new).toList();
     }
     @PutMapping
     public void editOrder(@RequestBody Order order){

@@ -26,7 +26,12 @@ public class User {
     private List<Order> orders;
 
 
-
+    public User(String rolUser, String nameUser, String emailUser, String passwordUser){
+        this.rolUser = rolUser;
+        this.nameUser = nameUser;
+        this.emailUser = emailUser;
+        this.passwordUser = passwordUser;
+    }
     public void editUser(User user){
         if (user.getNameUser()!= null){
             this.nameUser = user.getNameUser();
