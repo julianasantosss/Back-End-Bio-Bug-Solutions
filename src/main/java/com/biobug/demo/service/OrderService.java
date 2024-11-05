@@ -49,21 +49,32 @@ public class OrderService implements IOrderService {
         // Procesar cada OrderDetail en el request
         for (OrderDetail detail : orderRequest.getOrderDetails()) {
             // Crear un nuevo Product a partir del payload
-            Product product = new Product();
-            product.setNameProduct(detail.getProduct().getNameProduct());
-            product.setScientificName(detail.getProduct().getScientificName());
-            product.setDescription(detail.getProduct().getDescription());
-            product.setPrice(detail.getProduct().getPrice());
-            product.setImg(detail.getProduct().getImg());
-            product.setDateCreation(detail.getProduct().getDateCreation());
+            Optional<Product> pr = iProductRepository.findById(detail.getProduct().getIdProduct());
 
-            product = iProductRepository.save(product);
+            if(!pr.isPresent()) {
+                Product product = new Product();
+                product.setNameProduct(detail.getProduct().getNameProduct());
+                product.setScientificName(detail.getProduct().getScientificName());
+                product.setDescription(detail.getProduct().getDescription());
+                product.setPrice(detail.getProduct().getPrice());
+                product.setImg(detail.getProduct().getImg());
+                product.setDateCreation(detail.getProduct().getDateCreation());
 
-            OrderDetail orderDetail = new OrderDetail();
-            orderDetail.setQuantity(detail.getQuantity());
-            orderDetail.setPrice(product.getPrice());
-            orderDetail.setProduct(product);
-            order.addOrderDetail(orderDetail);
+                product = iProductRepository.save(product);
+
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.setQuantity(detail.getQuantity());
+                orderDetail.setPrice(product.getPrice());
+                orderDetail.setProduct(product);
+                order.addOrderDetail(orderDetail);
+            }else{
+
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.setQuantity(detail.getQuantity());
+                orderDetail.setPrice(pr.get().getPrice());
+                orderDetail.setProduct(pr.get());
+                order.addOrderDetail(orderDetail);
+            }
         }
 
         order.setDiscount(orderRequest.getDiscount());
