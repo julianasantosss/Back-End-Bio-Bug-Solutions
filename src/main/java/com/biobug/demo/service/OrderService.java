@@ -36,29 +36,41 @@ public class OrderService implements IOrderService {
     @Transactional
     @Override
     public void saveOrder(Order orderRequest) {
-            Order order = new Order();
-            order.setDateCreation(orderRequest.getDateCreation());
 
-            User user = iUserRepository.findById(orderRequest.getUser().getIdUser())
-                    .orElseThrow(() -> new IllegalArgumentException("User does not exist: " + orderRequest.getUser().getIdUser()));
-            order.setUser(user);
+        Order order = new Order();
+        order.setDateCreation(orderRequest.getDateCreation());
 
-            List<OrderDetail> orderDetails = new ArrayList<>();
+        User user = iUserRepository.findById(orderRequest.getUser().getIdUser())
+                .orElseThrow(() -> new IllegalArgumentException("User does not exist: " + orderRequest.getUser().getIdUser()));
+        order.setUser(user);
 
-            for (OrderDetail detail : orderRequest.getOrderDetails()) {
-                Product product = iProductRepository.findById(detail.getIdProduct())
-                        .orElseThrow(() -> new IllegalArgumentException("Product does not exist: " + detail.getIdProduct()));
+        List<OrderDetail> orderDetails = new ArrayList<>();
 
-                OrderDetail orderDetail = new OrderDetail();
-                orderDetail.setQuantity(detail.getQuantity());
-                orderDetail.setPrice(product.getPrice());
-                orderDetail.setIdProduct(product.getIdProduct());
+        // Procesar cada OrderDetail en el request
+        for (OrderDetail detail : orderRequest.getOrderDetails()) {
+            // Crear un nuevo Product a partir del payload
+            Product product = new Product();
+            product.setNameProduct(detail.getProduct().getNameProduct());
+            product.setScientificName(detail.getProduct().getScientificName());
+            product.setDescription(detail.getProduct().getDescription());
+            product.setPrice(detail.getProduct().getPrice());
+            product.setImg(detail.getProduct().getImg());
+            product.setDateCreation(detail.getProduct().getDateCreation());
 
-                order.addOrderDetail(orderDetail);
-                order.calculateSubTotal();
-                order.calculateTotal(orderRequest.getDiscount());
-            }
-            iOrderRepository.save(order);
+            product = iProductRepository.save(product);
+
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setQuantity(detail.getQuantity());
+            orderDetail.setPrice(product.getPrice());
+            orderDetail.setProduct(product);
+            order.addOrderDetail(orderDetail);
+        }
+
+        order.setDiscount(orderRequest.getDiscount());
+        order.setSubTotal(orderRequest.getSubTotal());
+        order.setTotal(orderRequest.getTotal());
+
+        iOrderRepository.save(order);
     }
 
     @Override

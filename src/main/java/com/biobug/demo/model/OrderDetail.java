@@ -18,8 +18,9 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id_order_detail")
     private Long idDetail;
-   @Column(name = "id_product")
-    private Long  idProduct;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+   @JoinColumn(name = "id_product")
+    private Product  product;
     private Integer quantity;
     @Column(name = "price_product")
     private Double price;
@@ -33,8 +34,8 @@ public class OrderDetail {
         }
     }
 
-    public void setIdProduct(Long idProduct){
-        this.idProduct = idProduct;
+    public void setProduct(Product product){
+        this.product = product;
     }
 
     public void setOrder(Order order){

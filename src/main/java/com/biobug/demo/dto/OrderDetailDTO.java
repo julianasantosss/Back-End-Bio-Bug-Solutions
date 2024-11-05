@@ -4,12 +4,12 @@ import com.biobug.demo.model.OrderDetail;
 
 public record OrderDetailDTO(
         Long idDetail,
-        Long  idProduct,
+        ProductDTO  product,
         Integer quantity,
         Double price
 ) {
     public OrderDetailDTO(OrderDetail orderDetail){
-        this(orderDetail.getIdDetail(), orderDetail.getIdProduct(), orderDetail.getQuantity(),
+        this(orderDetail.getIdDetail(), new ProductDTO(orderDetail.getProduct()), orderDetail.getQuantity(),
                 orderDetail.getPrice());
     }
 }

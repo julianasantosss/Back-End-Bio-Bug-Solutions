@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Table(name = "products")
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -40,7 +41,6 @@ public Product(String nameProduct,
     this.dateCreation = dateCreation;
 
 }
-
 
     public void updateProduct(Product product){
         if(product.getNameProduct() != null){
