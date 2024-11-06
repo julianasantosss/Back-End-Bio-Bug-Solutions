@@ -22,7 +22,7 @@ public class Order {
     @Column(name = "date_order")
     private LocalDate dateCreation;
     @Column(name = "percentage_discount")
-    private Integer discount = 0;
+    private Double discount = 0.0;
     @Column(name = "sub_total_price")
     private Double subTotal;
     @Column(name = "total_price")

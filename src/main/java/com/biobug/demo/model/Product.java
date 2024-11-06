@@ -23,6 +23,8 @@ public class Product {
     private Double price;
     @Column(name = "image")
     private String img;
+    @Column(name = "units_package")
+    private Integer unitsPackage;
     @Column(name = "date")
     private LocalDate dateCreation;
 
@@ -31,12 +33,14 @@ public Product(String nameProduct,
     String description,
     Double price,
     String img,
+    Integer unitsPackage,
     LocalDate dateCreation){
     this.nameProduct = nameProduct;
     this.scientificName = scientificName;
     this.description = description;
     this.price = price;
     this.img = img;
+    this.unitsPackage = unitsPackage;
     this.dateCreation = dateCreation;
 
 }

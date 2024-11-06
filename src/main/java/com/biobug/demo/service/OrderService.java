@@ -55,8 +55,11 @@ public class OrderService implements IOrderService {
                 orderDetail.setIdProduct(product.getIdProduct());
 
                 order.addOrderDetail(orderDetail);
-                order.calculateSubTotal();
-                order.calculateTotal(orderRequest.getDiscount());
+                order.setDiscount(orderRequest.getDiscount());
+                order.setSubTotal(orderRequest.getSubTotal());
+                order.setTotal(orderRequest.getTotal());
+//                order.calculateSubTotal();
+//                order.calculateTotal(orderRequest.getDiscount());
             }
             iOrderRepository.save(order);
     }

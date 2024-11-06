@@ -19,6 +19,7 @@ public class User {
     private Long idUser;
     private String rolUser;
     private String nameUser;
+    private String lastName;
     private String emailUser;
     private String passwordUser;
 
@@ -26,15 +27,19 @@ public class User {
     private List<Order> orders;
 
 
-    public User(String rolUser, String nameUser, String emailUser, String passwordUser){
+    public User(String rolUser, String nameUser, String lastName, String emailUser, String passwordUser){
         this.rolUser = rolUser;
         this.nameUser = nameUser;
+        this.lastName = lastName;
         this.emailUser = emailUser;
         this.passwordUser = passwordUser;
     }
     public void editUser(User user){
         if (user.getNameUser()!= null){
             this.nameUser = user.getNameUser();
+        }
+        if (user.getLastName()!= null){
+            this.nameUser = user.getLastName();
         }
         if (user.getEmailUser()!= null){
             this.emailUser = user.getEmailUser();

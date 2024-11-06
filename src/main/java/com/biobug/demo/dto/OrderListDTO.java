@@ -9,7 +9,7 @@ public record OrderListDTO(
         Long idOrder,
         LocalDate date,
         UserListDTO user,
-        Integer discount,
+        Double discount,
         Double subTotal,
         Double total,
         List<OrderDetailDTO> oderDetails

@@ -8,7 +8,7 @@ import java.util.List;
 public record OrderDTO(
         Long idOrder,
         LocalDate date,
-        Integer discount,
+        Double discount,
         Double subTotal,
         Double total,
         List<OrderDetailDTO> oderDetails
