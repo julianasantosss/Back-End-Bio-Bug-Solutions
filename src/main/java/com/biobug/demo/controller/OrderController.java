@@ -1,10 +1,12 @@
 package com.biobug.demo.controller;
 
 
+import com.biobug.demo.dto.OrderDTO;
 import com.biobug.demo.dto.OrderListDTO;
 import com.biobug.demo.model.Order;
 import com.biobug.demo.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,9 +18,10 @@ public class OrderController {
     private IOrderService iOrderService;
 
     @PostMapping
-    public void createOrder(@RequestBody Order order){
-        iOrderService.saveOrder(order);
+    public ResponseEntity<OrderDTO> createOrder(@RequestBody Order order){
+       return ResponseEntity.ok(new OrderDTO(iOrderService.saveOrder(order)))  ;
     }
+
     @GetMapping
     public List<OrderListDTO> getAllOrders(){
         return iOrderService.getOrders().stream().map(OrderListDTO::new).toList();

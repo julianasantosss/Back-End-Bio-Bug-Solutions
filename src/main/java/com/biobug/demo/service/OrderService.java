@@ -35,7 +35,7 @@ public class OrderService implements IOrderService {
     }
     @Transactional
     @Override
-    public void saveOrder(Order orderRequest) {
+    public Order saveOrder(Order orderRequest) {
             Order order = new Order();
             order.setDateCreation(orderRequest.getDateCreation());
 
@@ -61,7 +61,8 @@ public class OrderService implements IOrderService {
 //                order.calculateSubTotal();
 //                order.calculateTotal(orderRequest.getDiscount());
             }
-            iOrderRepository.save(order);
+           Order orderSaved = iOrderRepository.save(order);
+            return  orderSaved;
     }
 
     @Override
